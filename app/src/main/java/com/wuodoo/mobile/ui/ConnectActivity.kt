@@ -55,13 +55,13 @@ class ConnectActivity : AppCompatActivity() {
         if (protocol == "http") {
             binding.btnHttp.backgroundTintList  = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.primary))
             binding.btnHttp.setTextColor(ContextCompat.getColor(this, R.color.white))
-            binding.btnHttps.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.border))
-            binding.btnHttps.setTextColor(ContextCompat.getColor(this, R.color.text_primary))
+            binding.btnHttps.backgroundTintList = ColorStateList.valueOf(0xFFe8d5e0.toInt())
+            binding.btnHttps.setTextColor(ContextCompat.getColor(this, R.color.primary))
         } else {
             binding.btnHttps.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.primary))
             binding.btnHttps.setTextColor(ContextCompat.getColor(this, R.color.white))
-            binding.btnHttp.backgroundTintList  = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.border))
-            binding.btnHttp.setTextColor(ContextCompat.getColor(this, R.color.text_primary))
+            binding.btnHttp.backgroundTintList  = ColorStateList.valueOf(0xFFe8d5e0.toInt())
+            binding.btnHttp.setTextColor(ContextCompat.getColor(this, R.color.primary))
         }
     }
 

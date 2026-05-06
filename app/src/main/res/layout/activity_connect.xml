@@ -1,206 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg"
-    android:fillViewport="true">
+    android:orientation="vertical"
+    android:background="@color/bg">
 
+    <!-- ── Header gradient ──────────────────────────────────────────────── -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@drawable/bg_header_gradient"
+        android:orientation="vertical"
+        android:paddingTop="48dp"
+        android:paddingBottom="32dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:gravity="center">
 
-        <!-- ── Header ─────────────────────────────────────────────────── -->
+        <!-- Logo lingkaran WU -->
+        <TextView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:text="WU"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/bg_logo_circle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WU Odoo"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masukkan alamat server Odoo Anda"
+            android:textColor="#e8d5e0"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+    <!-- ── Scrollable content ───────────────────────────────────────────── -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_header_gradient"
             android:orientation="vertical"
-            android:paddingTop="56dp"
-            android:paddingBottom="28dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:gravity="center">
+            android:padding="16dp">
 
-            <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:src="@drawable/ic_logo"
-                android:contentDescription="Logo" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textColor="@color/white"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Masukkan alamat server Odoo Anda"
-                android:textColor="@color/accent"
-                android:textSize="13sp"
-                android:layout_marginTop="4dp" />
-        </LinearLayout>
-
-        <!-- ── Form Card ──────────────────────────────────────────────── -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="14dp"
-            android:layout_marginTop="-18dp"
-            android:layout_marginBottom="14dp"
-            app:cardCornerRadius="14dp"
-            app:cardElevation="8dp"
-            app:cardBackgroundColor="@color/white">
-
-            <LinearLayout
+            <!-- ── Form Card ─────────────────────────────────────────── -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="18dp">
+                app:cardCornerRadius="16dp"
+                app:cardElevation="6dp"
+                app:cardBackgroundColor="#FFFFFF">
 
-                <!-- Label -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ALAMAT SERVER"
-                    android:textColor="@color/text_muted"
-                    android:textSize="11sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="7dp" />
-
-                <!-- Input Host -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/inputHost"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="contoh: 192.168.1.10:8069"
-                        android:inputType="textUri"
-                        android:imeOptions="actionGo"
-                        android:singleLine="true" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="IP atau domain dengan port"
-                    android:textColor="@color/text_muted"
-                    android:textSize="12sp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="14dp" />
-
-                <!-- Protocol Toggle -->
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="18dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="PROTOKOL:"
-                        android:textColor="@color/text_muted"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        android:layout_marginEnd="10dp" />
-
-                    <Button
-                        android:id="@+id/btnHttp"
-                        android:layout_width="80dp"
-                        android:layout_height="40dp"
-                        android:text="HTTP"
-                        android:textSize="13sp"
-                        android:backgroundTint="@color/primary"
-                        android:textColor="@color/white"
-                        style="@style/Widget.MaterialComponents.Button" />
-
-                    <Button
-                        android:id="@+id/btnHttps"
-                        android:layout_width="80dp"
-                        android:layout_height="40dp"
-                        android:text="HTTPS"
-                        android:textSize="13sp"
-                        android:layout_marginStart="8dp"
-                        android:backgroundTint="@color/border"
-                        android:textColor="@color/text_primary"
-                        style="@style/Widget.MaterialComponents.Button" />
-                </LinearLayout>
-
-                <!-- Error -->
-                <TextView
-                    android:id="@+id/connectError"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_error"
-                    android:padding="12dp"
-                    android:textColor="@color/danger"
-                    android:textSize="13sp"
-                    android:visibility="gone"
-                    android:layout_marginBottom="14dp" />
-
-                <!-- Connect Button wrapper (FrameLayout agar bisa overlay loader) -->
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="52dp">
-
-                    <Button
-                        android:id="@+id/btnConnect"
-                        android:layout_width="match_parent"
-                        android:layout_height="52dp"
-                        android:backgroundTint="@color/primary"
-                        android:text="Sambungkan"
-                        android:textColor="@color/white"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <ProgressBar
-                        android:id="@+id/btnConnectLoader"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_gravity="center"
-                        android:indeterminateTint="@color/white"
-                        android:visibility="gone" />
-                </FrameLayout>
-
-                <!-- Saved Servers -->
-                <LinearLayout
-                    android:id="@+id/savedServersSection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="22dp"
-                    android:visibility="gone">
+                    android:padding="20dp">
+
+                    <!-- Label Alamat Server -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ALAMAT SERVER"
+                        android:textColor="#8a6a7e"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="8dp" />
+
+                    <!-- Input Host -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:boxStrokeColor="@color/primary"
+                        app:hintTextColor="@color/primary">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/inputHost"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="contoh: 192.168.1.10:8069"
+                            android:textColor="#2c1a26"
+                            android:textColorHint="#8a6a7e"
+                            android:inputType="textUri"
+                            android:imeOptions="actionGo"
+                            android:singleLine="true" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SERVER TERSIMPAN"
-                        android:textColor="@color/text_muted"
+                        android:text="IP atau domain dengan port"
+                        android:textColor="#8a6a7e"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="20dp" />
+
+                    <!-- Protocol Toggle -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PROTOKOL"
+                        android:textColor="#8a6a7e"
                         android:textSize="11sp"
                         android:textStyle="bold"
-                        android:layout_marginBottom="10dp" />
+                        android:letterSpacing="0.08"
+                        android:layout_marginBottom="8dp" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvSavedServers"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="false" />
-                </LinearLayout>
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="20dp">
 
+                        <Button
+                            android:id="@+id/btnHttp"
+                            android:layout_width="0dp"
+                            android:layout_height="44dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="6dp"
+                            android:text="HTTP"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:backgroundTint="@color/primary"
+                            android:textColor="#FFFFFF"
+                            style="@style/Widget.MaterialComponents.Button" />
+
+                        <Button
+                            android:id="@+id/btnHttps"
+                            android:layout_width="0dp"
+                            android:layout_height="44dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:text="HTTPS"
+                            android:textSize="14sp"
+                            android:textStyle="bold"
+                            android:backgroundTint="#e8d5e0"
+                            android:textColor="#714B67"
+                            style="@style/Widget.MaterialComponents.Button" />
+                    </LinearLayout>
+
+                    <!-- Error message -->
+                    <TextView
+                        android:id="@+id/connectError"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_error"
+                        android:padding="12dp"
+                        android:textColor="#d32f2f"
+                        android:textSize="13sp"
+                        android:visibility="gone"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Tombol Sambungkan -->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp">
+
+                        <Button
+                            android:id="@+id/btnConnect"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:backgroundTint="@color/primary"
+                            android:text="Sambungkan"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            style="@style/Widget.MaterialComponents.Button" />
+
+                        <ProgressBar
+                            android:id="@+id/btnConnectLoader"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:indeterminateTint="#FFFFFF"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ── Saved Servers ──────────────────────────────────────── -->
+            <LinearLayout
+                android:id="@+id/savedServersSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SERVER TERSIMPAN"
+                    android:textColor="#8a6a7e"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.08"
+                    android:layout_marginBottom="10dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSavedServers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-</ScrollView>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
