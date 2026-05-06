@@ -1,11 +1,14 @@
 package com.wuodoo.mobile.ui
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.wuodoo.mobile.R
 import com.wuodoo.mobile.data.ServerInfo
 import com.wuodoo.mobile.data.ServerRepository
 import com.wuodoo.mobile.databinding.ActivityConnectBinding
@@ -37,16 +40,28 @@ class ConnectActivity : AppCompatActivity() {
     }
 
     private fun setupProtocolToggle() {
-        binding.btnHttp.isSelected = true
+        updateProtocolButtons()
         binding.btnHttp.setOnClickListener {
             protocol = "http"
-            binding.btnHttp.isSelected  = true
-            binding.btnHttps.isSelected = false
+            updateProtocolButtons()
         }
         binding.btnHttps.setOnClickListener {
             protocol = "https"
-            binding.btnHttp.isSelected  = false
-            binding.btnHttps.isSelected = true
+            updateProtocolButtons()
+        }
+    }
+
+    private fun updateProtocolButtons() {
+        if (protocol == "http") {
+            binding.btnHttp.backgroundTintList  = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.primary))
+            binding.btnHttp.setTextColor(ContextCompat.getColor(this, R.color.white))
+            binding.btnHttps.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.border))
+            binding.btnHttps.setTextColor(ContextCompat.getColor(this, R.color.text_primary))
+        } else {
+            binding.btnHttps.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.primary))
+            binding.btnHttps.setTextColor(ContextCompat.getColor(this, R.color.white))
+            binding.btnHttp.backgroundTintList  = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.border))
+            binding.btnHttp.setTextColor(ContextCompat.getColor(this, R.color.text_primary))
         }
     }
 
@@ -120,7 +135,7 @@ class ConnectActivity : AppCompatActivity() {
 
     private fun setLoading(loading: Boolean) {
         binding.btnConnect.isEnabled = !loading
-        binding.btnConnectText.visibility = if (loading) View.GONE else View.VISIBLE
+        binding.btnConnect.text = if (loading) "" else "Sambungkan"
         binding.btnConnectLoader.visibility = if (loading) View.VISIBLE else View.GONE
     }
 

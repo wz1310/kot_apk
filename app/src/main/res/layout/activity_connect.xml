@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Header -->
+        <!-- ── Header ─────────────────────────────────────────────────── -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -19,7 +19,8 @@
             android:orientation="vertical"
             android:paddingTop="56dp"
             android:paddingBottom="28dp"
-            android:paddingHorizontal="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
             android:gravity="center">
 
             <ImageView
@@ -46,12 +47,14 @@
                 android:layout_marginTop="4dp" />
         </LinearLayout>
 
-        <!-- Form Card -->
+        <!-- ── Form Card ──────────────────────────────────────────────── -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="14dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
             android:layout_marginTop="-18dp"
+            android:layout_marginBottom="14dp"
             app:cardCornerRadius="14dp"
             app:cardElevation="8dp"
             app:cardBackgroundColor="@color/white">
@@ -70,7 +73,6 @@
                     android:textColor="@color/text_muted"
                     android:textSize="11sp"
                     android:textStyle="bold"
-                    android:letterSpacing="0.06"
                     android:layout_marginBottom="7dp" />
 
                 <!-- Input Host -->
@@ -115,28 +117,26 @@
                         android:textStyle="bold"
                         android:layout_marginEnd="10dp" />
 
-                    <com.google.android.material.button.MaterialButtonToggleGroup
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:singleSelection="true"
-                        app:selectionRequired="true">
+                    <Button
+                        android:id="@+id/btnHttp"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:text="HTTP"
+                        android:textSize="13sp"
+                        android:backgroundTint="@color/primary"
+                        android:textColor="@color/white"
+                        style="@style/Widget.MaterialComponents.Button" />
 
-                        <Button
-                            android:id="@+id/btnHttp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:text="HTTP"
-                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                            android:textSize="13sp" />
-
-                        <Button
-                            android:id="@+id/btnHttps"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:text="HTTPS"
-                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                            android:textSize="13sp" />
-                    </com.google.android.material.button.MaterialButtonToggleGroup>
+                    <Button
+                        android:id="@+id/btnHttps"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:text="HTTPS"
+                        android:textSize="13sp"
+                        android:layout_marginStart="8dp"
+                        android:backgroundTint="@color/border"
+                        android:textColor="@color/text_primary"
+                        style="@style/Widget.MaterialComponents.Button" />
                 </LinearLayout>
 
                 <!-- Error -->
@@ -151,30 +151,29 @@
                     android:visibility="gone"
                     android:layout_marginBottom="14dp" />
 
-                <!-- Connect Button -->
-                <Button
-                    android:id="@+id/btnConnect"
+                <!-- Connect Button wrapper (FrameLayout agar bisa overlay loader) -->
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:backgroundTint="@color/primary"
-                    android:text="Sambungkan"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold">
+                    android:layout_height="52dp">
+
+                    <Button
+                        android:id="@+id/btnConnect"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:backgroundTint="@color/primary"
+                        android:text="Sambungkan"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <ProgressBar
                         android:id="@+id/btnConnectLoader"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
                         android:indeterminateTint="@color/white"
                         android:visibility="gone" />
-                </Button>
-
-                <TextView
-                    android:id="@+id/btnConnectText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
+                </FrameLayout>
 
                 <!-- Saved Servers -->
                 <LinearLayout
@@ -192,7 +191,6 @@
                         android:textColor="@color/text_muted"
                         android:textSize="11sp"
                         android:textStyle="bold"
-                        android:letterSpacing="0.06"
                         android:layout_marginBottom="10dp" />
 
                     <androidx.recyclerview.widget.RecyclerView
