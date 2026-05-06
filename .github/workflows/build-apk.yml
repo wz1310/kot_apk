@@ -41,6 +41,40 @@ jobs:
               "https://github.com/gradle/gradle/raw/v8.4.0/gradle/wrapper/gradle-wrapper.jar"
           fi
 
+      - name: Generate launcher icons (PNG)
+        run: |
+          python3 - <<'PYEOF'
+          import struct, zlib, os
+
+          def make_png(w, h, r, g, b):
+              def chunk(n, d):
+                  c = struct.pack('>I', len(d)) + n + d
+                  return c + struct.pack('>I', zlib.crc32(n + d) & 0xffffffff)
+              ihdr = struct.pack('>IIBBBBB', w, h, 8, 2, 0, 0, 0)
+              row  = b'\x00' + bytes([r, g, b]) * w
+              idat = zlib.compress(row * h)
+              return b'\x89PNG\r\n\x1a\n' + chunk(b'IHDR', ihdr) + chunk(b'IDAT', idat) + chunk(b'IEND', b'')
+
+          R, G, B = 113, 75, 103  # #714B67
+
+          sizes = {
+              'mipmap-mdpi':    48,
+              'mipmap-hdpi':    72,
+              'mipmap-xhdpi':   96,
+              'mipmap-xxhdpi':  144,
+              'mipmap-xxxhdpi': 192,
+          }
+
+          base = 'app/src/main/res'
+          for folder, size in sizes.items():
+              path = os.path.join(base, folder)
+              os.makedirs(path, exist_ok=True)
+              png = make_png(size, size, R, G, B)
+              open(os.path.join(path, 'ic_launcher.png'), 'wb').write(png)
+              open(os.path.join(path, 'ic_launcher_round.png'), 'wb').write(png)
+              print(f'Generated {folder}/ic_launcher.png ({size}x{size})')
+          PYEOF
+
       - name: Build Debug APK
         run: ./gradlew assembleDebug --no-daemon --stacktrace
         env:
