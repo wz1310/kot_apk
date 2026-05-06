@@ -66,6 +66,13 @@
             </intent-filter>
         </receiver>
 
+        <!-- Crash log activity -->
+        <activity
+            android:name=".CrashActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.WUOdoo" />
+
     </application>
 
 </manifest>
